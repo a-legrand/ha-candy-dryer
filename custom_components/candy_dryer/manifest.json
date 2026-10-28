@@ -1,0 +1,12 @@
+{
+  "domain": "candy_dryer",
+  "name": "Candy dryer",
+  "codeowners": ["@a-legrand"],
+  "config_flow": true,
+  "documentation": "https://github.com/a-legrand/ha-candy-dryer",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/a-legrand/ha-candy-dryer/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

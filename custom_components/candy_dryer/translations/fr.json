@@ -1,0 +1,188 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "Le sèche-linge doit être allumé : sa clé de chiffrement est lue dans sa réponse.",
+        "data": {
+          "host": "Hôte"
+        },
+        "data_description": {
+          "host": "Adresse IP du sèche-linge sur votre réseau. Fixez-la dans votre box ou routeur."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Le sèche-linge ne répond pas. Allumez-le et vérifiez l'adresse.",
+      "not_a_dryer": "Cet appareil répond, mais pas avec un état de sèche-linge Candy."
+    },
+    "abort": {
+      "already_configured": "L'appareil est déjà configuré"
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "clean_filter": {
+        "name": "Filtre à nettoyer"
+      },
+      "water_tank_full": {
+        "name": "Bac à eau plein"
+      },
+      "remote_control": {
+        "name": "Commande à distance"
+      }
+    },
+    "button": {
+      "play_pause": {
+        "name": "Démarrer / Pause"
+      },
+      "stop": {
+        "name": "Arrêter"
+      }
+    },
+    "select": {
+      "program_choice": {
+        "name": "Programme à lancer",
+        "state": {
+          "daily_perfect_59": "Standard · Quotidien Parfait 59'",
+          "daily_45": "Standard · Quotidien 45'",
+          "eco_30": "Standard · ECO 30'",
+          "refresh": "Standard · Refresh",
+          "sport": "Standard · Sports",
+          "relax_creases": "Standard · Anti-plis",
+          "small_load": "Standard · Faible charge",
+          "wool": "Standard · Woolmark",
+          "shirts": "Standard · Chemises",
+          "synthetics": "Standard ⏱ · Synthétiques",
+          "darks": "Standard · Couleurs dont foncées",
+          "jeans": "Standard · Jeans",
+          "whites": "Standard ⏱ · Blancs",
+          "eco_cotton": "Standard · Coton Eco",
+          "extra_bathrobe": "Extra Maison · Peignoir",
+          "extra_tablecloths": "Extra Maison · Nappes",
+          "extra_anti_mites": "Extra Maison · Anti-acariens",
+          "extra_bed_linen": "Extra Maison · Draps",
+          "extra_delicates_antiallergy": "Extra Maison · Délicat hypoallergénique",
+          "extra_delicate_tablecloths": "Extra Maison · Nappes délicates",
+          "extra_backpacks": "Extra Maison · Sac à dos",
+          "extra_curtains": "Extra Maison · Rideaux",
+          "extra_duvet": "Extra Maison · Couette",
+          "extra_denim_jeans": "Extra Spécial · Jeans",
+          "extra_easy_iron_cotton": "Extra Spécial · Repassage facile - Coton",
+          "extra_shirts": "Extra Spécial · Chemises",
+          "extra_cuddly_toys": "Extra Spécial · Jouets en peluche",
+          "extra_baby": "Extra Spécial · Bébé",
+          "extra_technical_fabrics": "Extra Spécial · Textiles techniques",
+          "extra_swimsuits": "Extra Spécial · Maillots de bain",
+          "extra_playsuits": "Extra Spécial · Combinaisons",
+          "extra_easy_iron_synthetics": "Extra Spécial · Repassage facile - Synthétiques",
+          "extra_warm_embrace": "Extra Spécial · Chauffage délicat",
+          "extra_dehumidifier": "Extra Spécial · Déshumidification",
+          "extra_gym_fit": "Extra Spécial · Sport",
+          "extra_lingerie": "Extra Spécial · Lingerie",
+          "extra_air_refresh": "Extra Spécial · Rafraîchir",
+          "extra_waterproof": "Extra Spécial · Imperméabilisant"
+        }
+      },
+      "duration_choice": {
+        "name": "Programme à lancer : durée",
+        "state": {
+          "default": "Par défaut du programme",
+          "min_70": "70 min",
+          "min_80": "80 min",
+          "min_90": "90 min",
+          "min_100": "100 min",
+          "min_110": "110 min",
+          "min_120": "120 min",
+          "min_130": "130 min",
+          "min_140": "140 min",
+          "min_150": "150 min",
+          "min_160": "160 min",
+          "min_170": "170 min",
+          "min_180": "180 min",
+          "min_190": "190 min",
+          "min_200": "200 min",
+          "min_210": "210 min",
+          "min_220": "220 min"
+        }
+      },
+      "delay_choice": {
+        "name": "Programme à lancer : départ",
+        "state": {
+          "now": "Immédiat",
+          "h_1": "Dans 1 h",
+          "h_2": "Dans 2 h",
+          "h_3": "Dans 3 h",
+          "h_4": "Dans 4 h",
+          "h_6": "Dans 6 h",
+          "h_8": "Dans 8 h",
+          "h_12": "Dans 12 h"
+        }
+      }
+    },
+    "sensor": {
+      "state": {
+        "name": "État",
+        "state": {
+          "off": "Éteint",
+          "idle": "En attente",
+          "running": "En marche",
+          "paused": "En pause",
+          "delay_selection": "Réglage du départ différé",
+          "delayed_start": "Départ différé",
+          "test": "Test",
+          "error": "Erreur",
+          "finished": "Terminé"
+        }
+      },
+      "phase": {
+        "name": "Phase",
+        "state": {
+          "stopped": "Arrêté",
+          "pre_heating": "Préchauffage",
+          "drying": "Séchage",
+          "end": "Fin"
+        }
+      },
+      "program": {
+        "name": "Programme",
+        "state": {
+          "off": "Arrêt",
+          "remote": "Position commande à distance",
+          "daily_perfect_59": "Quotidien Parfait 59'",
+          "daily_45": "Quotidien 45'",
+          "eco_30": "ECO 30'",
+          "refresh": "Refresh",
+          "sport": "Sports",
+          "relax_creases": "Anti-plis",
+          "small_load": "Faible charge",
+          "wool": "Woolmark",
+          "shirts": "Chemises",
+          "synthetics": "Synthétiques",
+          "darks": "Couleurs dont foncées",
+          "jeans": "Jeans",
+          "whites": "Blancs",
+          "eco_cotton": "Coton Eco"
+        }
+      },
+      "remaining_time": {
+        "name": "Temps restant"
+      },
+      "end_time": {
+        "name": "Heure de fin"
+      },
+      "dry_level": {
+        "name": "Niveau de séchage",
+        "state": {
+          "none": "Aucun",
+          "iron": "Prêt à repasser",
+          "hang": "Prêt à suspendre",
+          "store": "Prêt à ranger",
+          "bone": "Extra sec"
+        }
+      },
+      "error_code": {
+        "name": "Code erreur"
+      }
+    }
+  }
+}

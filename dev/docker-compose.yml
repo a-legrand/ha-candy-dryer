@@ -1,0 +1,14 @@
+# Test Home Assistant instance with the integration mounted live.
+#   docker compose -f dev/docker-compose.yml up -d   → http://localhost:8124
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: ha-candy-dryer-dev
+    ports:
+      - "8124:8123"
+    volumes:
+      - ./config:/config
+      - ../custom_components/candy_dryer:/config/custom_components/candy_dryer
+    environment:
+      TZ: Europe/Paris
+    restart: unless-stopped

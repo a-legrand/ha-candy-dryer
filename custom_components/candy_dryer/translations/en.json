@@ -1,0 +1,188 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "The dryer must be switched on: its encryption key is read from its answer.",
+        "data": {
+          "host": "Host"
+        },
+        "data_description": {
+          "host": "IP address of the dryer on your network. Give it a fixed lease in your router."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "The dryer does not answer. Switch it on and check the address.",
+      "not_a_dryer": "This device answered, but not with a Candy tumble dryer status."
+    },
+    "abort": {
+      "already_configured": "Device is already configured"
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "clean_filter": {
+        "name": "Filter to clean"
+      },
+      "water_tank_full": {
+        "name": "Water tank full"
+      },
+      "remote_control": {
+        "name": "Remote control"
+      }
+    },
+    "button": {
+      "play_pause": {
+        "name": "Start / Pause"
+      },
+      "stop": {
+        "name": "Stop"
+      }
+    },
+    "select": {
+      "program_choice": {
+        "name": "Program to start",
+        "state": {
+          "daily_perfect_59": "Standard · Daily Perfect 59'",
+          "daily_45": "Standard · Daily 45'",
+          "eco_30": "Standard · Saving 30'",
+          "refresh": "Standard · Refresh",
+          "sport": "Standard · Sport Plus",
+          "relax_creases": "Standard · Relax Creases",
+          "small_load": "Standard · Small Load",
+          "wool": "Standard · Wool",
+          "shirts": "Standard · Shirts",
+          "synthetics": "Standard ⏱ · Synthetics",
+          "darks": "Standard · Darks & Coloured",
+          "jeans": "Standard · Jeans",
+          "whites": "Standard ⏱ · Whites",
+          "eco_cotton": "Standard · ECO Cotton",
+          "extra_bathrobe": "Extra Home · Bathrobe",
+          "extra_tablecloths": "Extra Home · Tablecloths",
+          "extra_anti_mites": "Extra Home · Anti-mites",
+          "extra_bed_linen": "Extra Home · Bed linen",
+          "extra_delicates_antiallergy": "Extra Home · Delicates antiallergy",
+          "extra_delicate_tablecloths": "Extra Home · Delicate tablecloths",
+          "extra_backpacks": "Extra Home · Backpacks",
+          "extra_curtains": "Extra Home · Curtains",
+          "extra_duvet": "Extra Home · Duvet",
+          "extra_denim_jeans": "Extra Special · Denim",
+          "extra_easy_iron_cotton": "Extra Special · Easy iron - Cotton",
+          "extra_shirts": "Extra Special · Shirts",
+          "extra_cuddly_toys": "Extra Special · Cuddly toys",
+          "extra_baby": "Extra Special · Baby",
+          "extra_technical_fabrics": "Extra Special · Technical fabrics",
+          "extra_swimsuits": "Extra Special · Swimsuits and bikinis",
+          "extra_playsuits": "Extra Special · Playsuits",
+          "extra_easy_iron_synthetics": "Extra Special · Easy iron - Synthetics",
+          "extra_warm_embrace": "Extra Special · Warm embrace",
+          "extra_dehumidifier": "Extra Special · Dehumidifier",
+          "extra_gym_fit": "Extra Special · Gym fit",
+          "extra_lingerie": "Extra Special · Lingerie",
+          "extra_air_refresh": "Extra Special · Air refresh",
+          "extra_waterproof": "Extra Special · Regenerates waterproof"
+        }
+      },
+      "duration_choice": {
+        "name": "Program to start: duration",
+        "state": {
+          "default": "Program default",
+          "min_70": "70 min",
+          "min_80": "80 min",
+          "min_90": "90 min",
+          "min_100": "100 min",
+          "min_110": "110 min",
+          "min_120": "120 min",
+          "min_130": "130 min",
+          "min_140": "140 min",
+          "min_150": "150 min",
+          "min_160": "160 min",
+          "min_170": "170 min",
+          "min_180": "180 min",
+          "min_190": "190 min",
+          "min_200": "200 min",
+          "min_210": "210 min",
+          "min_220": "220 min"
+        }
+      },
+      "delay_choice": {
+        "name": "Program to start: delayed start",
+        "state": {
+          "now": "Now",
+          "h_1": "1 h later",
+          "h_2": "2 h later",
+          "h_3": "3 h later",
+          "h_4": "4 h later",
+          "h_6": "6 h later",
+          "h_8": "8 h later",
+          "h_12": "12 h later"
+        }
+      }
+    },
+    "sensor": {
+      "state": {
+        "name": "State",
+        "state": {
+          "off": "Off",
+          "idle": "Idle",
+          "running": "Running",
+          "paused": "Paused",
+          "delay_selection": "Choosing delayed start",
+          "delayed_start": "Delayed start",
+          "test": "Test",
+          "error": "Error",
+          "finished": "Finished"
+        }
+      },
+      "phase": {
+        "name": "Phase",
+        "state": {
+          "stopped": "Stopped",
+          "pre_heating": "Pre-heating",
+          "drying": "Drying",
+          "end": "End"
+        }
+      },
+      "program": {
+        "name": "Program",
+        "state": {
+          "off": "Off",
+          "remote": "Remote control position",
+          "daily_perfect_59": "Daily Perfect 59'",
+          "daily_45": "Daily 45'",
+          "eco_30": "Saving 30'",
+          "refresh": "Refresh",
+          "sport": "Sport Plus",
+          "relax_creases": "Relax Creases",
+          "small_load": "Small Load",
+          "wool": "Wool",
+          "shirts": "Shirts",
+          "synthetics": "Synthetics",
+          "darks": "Darks & Coloured",
+          "jeans": "Jeans",
+          "whites": "Whites",
+          "eco_cotton": "ECO Cotton"
+        }
+      },
+      "remaining_time": {
+        "name": "Remaining time"
+      },
+      "end_time": {
+        "name": "End time"
+      },
+      "dry_level": {
+        "name": "Dry level",
+        "state": {
+          "none": "None",
+          "iron": "Iron dry",
+          "hang": "Hang dry",
+          "store": "Store dry",
+          "bone": "Bone dry"
+        }
+      },
+      "error_code": {
+        "name": "Error code"
+      }
+    }
+  }
+}
