@@ -2,7 +2,7 @@
   "config": {
     "step": {
       "user": {
-        "description": "The dryer must be switched on: its encryption key is read from its answer.",
+        "description": "The dryer must be switched on.",
         "data": {
           "host": "Host"
         },

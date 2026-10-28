@@ -58,8 +58,7 @@ that a Wi-Fi hiccup does not end it in Home Assistant.
 
 The dryer serves `http://<ip>/http-read.json?encrypted=1` (status) and
 `http://<ip>/http-write.json?encrypted=1&data=<hex>` (commands), both
-XOR-encrypted with a 16-character key. Command formats come from the
-Simply-Fi Android app:
+XOR-encrypted with a 16-character key:
 
 - start: `Write=1&Pa=0&Sel=0&PrNm=<position>&StSt=1&RecipeId=NULL`, plus
   `&Time=<5-20>` for a duration (70 to 220 min: the dryer then stops on time
