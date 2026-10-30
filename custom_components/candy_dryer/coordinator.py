@@ -56,10 +56,11 @@ class CandyDryerCoordinator(DataUpdateCoordinator[DryerData]):
             update_interval=IDLE_INTERVAL,
         )
         self.client = client
-        # Program and duration chosen in Home Assistant, sent by the Start
-        # button. No duration means the program default.
+        # Program, duration and dry level chosen in Home Assistant, sent by
+        # the Start button. None means the program default.
         self.selected_program: Program = DEFAULT_PROGRAM
         self.selected_time_level: int | None = None
+        self.selected_dry_level: int | None = None
         # Delay of the next start only: back to an immediate start after it.
         self.selected_delay_minutes = 0
         self._missed_polls = 0
@@ -102,6 +103,12 @@ class CandyDryerCoordinator(DataUpdateCoordinator[DryerData]):
         """Chosen duration, if the chosen program accepts it."""
         level = self.selected_time_level
         return level if level in self.selected_program.time_levels else None
+
+    @property
+    def dry_level_to_send(self) -> int | None:
+        """Chosen dry level, if the chosen program accepts it."""
+        level = self.selected_dry_level
+        return level if level in self.selected_program.dry_levels else None
 
     def poll_quickly(self) -> None:
         """Poll at the active rate for a while after a command.

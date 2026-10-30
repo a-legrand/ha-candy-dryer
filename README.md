@@ -30,6 +30,7 @@ their programs differently.
 | Program to start | Program sent by Start / Pause: dial programs, then extra ones |
 | Program to start: delayed start | Now, or 1 to 12 h later; back to now after each start |
 | Program to start: duration | 70 to 150 min for Synthetics, 70 to 220 min for Whites |
+| Program to start: dry level | Iron, hang, store or bone dry for ECO Cotton |
 | Phase | `stopped`, `pre_heating`, `drying`, `end` |
 | Remaining time | Minutes |
 | End time | Estimated end of the running cycle |
@@ -80,8 +81,11 @@ Simply-Fi app does for this dryer: e.g. bed linen is Whites, bone dry.
 The firmware sometimes sends invalid JSON (`"RecipeId":"NULL \"` during a
 cycle), so the status is parsed field by field.
 
+A dry level is sent as `&DryLev=<1-4>` with the start, as the app does for
+standard programs. Only ECO Cotton offers the choice for now.
+
 Not supported yet: options (`OptMsk`: hybrid 2, best ironing 4, drying
-manager 8, anti-crease 16), and dry levels other than the program defaults.
+manager 8, anti-crease 16).
 
 ## Development
 

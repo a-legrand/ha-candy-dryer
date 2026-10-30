@@ -105,6 +105,16 @@
           "min_220": "220 min"
         }
       },
+      "dry_level_choice": {
+        "name": "Program to start: dry level",
+        "state": {
+          "default": "Program default",
+          "iron": "Iron dry",
+          "hang": "Hang dry",
+          "store": "Store dry",
+          "bone": "Bone dry"
+        }
+      },
       "delay_choice": {
         "name": "Program to start: delayed start",
         "state": {

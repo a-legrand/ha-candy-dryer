@@ -105,6 +105,16 @@
           "min_220": "220 min"
         }
       },
+      "dry_level_choice": {
+        "name": "Programme à lancer : niveau de séchage",
+        "state": {
+          "default": "Par défaut du programme",
+          "iron": "Prêt à repasser",
+          "hang": "Prêt à suspendre",
+          "store": "Prêt à ranger",
+          "bone": "Extra sec"
+        }
+      },
       "delay_choice": {
         "name": "Programme à lancer : départ",
         "state": {

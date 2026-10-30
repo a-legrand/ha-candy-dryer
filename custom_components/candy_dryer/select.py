@@ -1,4 +1,4 @@
-"""Choice of the program started by the Start / Pause button, its duration and delay."""
+"""Choice of the program started by the Start / Pause button and its settings."""
 
 from __future__ import annotations
 
@@ -10,12 +10,15 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from .coordinator import CandyDryerConfigEntry
 from .entity import CandyDryerEntity
 from .programs import DELAYS, PROGRAMS, PROGRAMS_BY_KEY, TIME_LEVEL_MINUTES
+from .protocol import DRY_LEVELS
 
 DEFAULT_DURATION = "default"
 DURATION_OPTIONS = {
     f"min_{minutes}": level for level, minutes in TIME_LEVEL_MINUTES.items()
 }
 DURATION_KEYS = {level: option for option, level in DURATION_OPTIONS.items()}
+DEFAULT_DRY_LEVEL = "default"
+DRY_LEVEL_OPTIONS = {option: level for level, option in DRY_LEVELS.items() if level}
 
 PROGRAM_CHOICE = SelectEntityDescription(
     key="program_choice",
@@ -24,6 +27,9 @@ PROGRAM_CHOICE = SelectEntityDescription(
 )
 DURATION_CHOICE = SelectEntityDescription(
     key="duration_choice", translation_key="duration_choice"
+)
+DRY_LEVEL_CHOICE = SelectEntityDescription(
+    key="dry_level_choice", translation_key="dry_level_choice"
 )
 DELAY_CHOICE = SelectEntityDescription(
     key="delay_choice", translation_key="delay_choice", options=list(DELAYS)
@@ -35,12 +41,13 @@ async def async_setup_entry(
     entry: CandyDryerConfigEntry,
     async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
-    """Set up the program, duration and delay choices."""
+    """Set up the program, duration, dry level and delay choices."""
     coordinator = entry.runtime_data
     async_add_entities(
         [
             CandyDryerProgramSelect(coordinator, PROGRAM_CHOICE),
             CandyDryerDurationSelect(coordinator, DURATION_CHOICE),
+            CandyDryerDryLevelSelect(coordinator, DRY_LEVEL_CHOICE),
             CandyDryerDelaySelect(coordinator, DELAY_CHOICE),
         ]
     )
@@ -78,12 +85,14 @@ class CandyDryerProgramSelect(CandyDryerChoiceSelect):
             self.coordinator.selected_program = PROGRAMS_BY_KEY[option]
 
     async def async_select_option(self, option: str) -> None:
-        """Choose a program, and drop a duration it does not accept."""
+        """Choose a program, and drop a duration or dry level it does not accept."""
         program = PROGRAMS_BY_KEY[option]
         self.coordinator.selected_program = program
         if self.coordinator.selected_time_level not in program.time_levels:
             self.coordinator.selected_time_level = None
-        # The duration choices depend on the program.
+        if self.coordinator.selected_dry_level not in program.dry_levels:
+            self.coordinator.selected_dry_level = None
+        # The duration and dry level choices depend on the program.
         self.coordinator.async_update_listeners()
 
 
@@ -110,6 +119,31 @@ class CandyDryerDurationSelect(CandyDryerChoiceSelect):
     async def async_select_option(self, option: str) -> None:
         """Choose a duration."""
         self.coordinator.selected_time_level = DURATION_OPTIONS.get(option)
+        self.coordinator.async_update_listeners()
+
+
+class CandyDryerDryLevelSelect(CandyDryerChoiceSelect):
+    """Dry level aimed at by the humidity sensor, for programs that accept one."""
+
+    @property
+    def options(self) -> list[str]:
+        """Dry levels accepted by the chosen program."""
+        levels = self.coordinator.selected_program.dry_levels
+        return [DEFAULT_DRY_LEVEL, *(DRY_LEVELS[level] for level in levels)]
+
+    @property
+    def current_option(self) -> str:
+        """Chosen dry level."""
+        level = self.coordinator.dry_level_to_send
+        return DRY_LEVELS[level] if level else DEFAULT_DRY_LEVEL
+
+    def _restore(self, option: str) -> None:
+        # Checked against the program when used, like the duration.
+        self.coordinator.selected_dry_level = DRY_LEVEL_OPTIONS.get(option)
+
+    async def async_select_option(self, option: str) -> None:
+        """Choose a dry level."""
+        self.coordinator.selected_dry_level = DRY_LEVEL_OPTIONS.get(option)
         self.coordinator.async_update_listeners()
 
 

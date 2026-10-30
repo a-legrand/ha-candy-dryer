@@ -41,6 +41,7 @@ def _play_pause(coordinator: CandyDryerCoordinator, status: DryerStatus) -> str:
         coordinator.selected_program,
         coordinator.time_level_to_send,
         coordinator.selected_delay_minutes,
+        coordinator.dry_level_to_send,
     )
 
 

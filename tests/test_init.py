@@ -267,6 +267,49 @@ async def test_duration_choice(
     assert hass.states.get(duration).state == "default"
 
 
+async def test_dry_level_choice(
+    hass: HomeAssistant, aioclient_mock: AiohttpClientMocker
+) -> None:
+    answer(aioclient_mock)
+    await setup_dryer(hass)
+    dry_level = "select.candy_dryer_program_to_start_dry_level"
+
+    await choose(hass, "eco_cotton")
+    assert hass.states.get(dry_level).attributes["options"] == [
+        "default",
+        "iron",
+        "hang",
+        "store",
+        "bone",
+    ]
+    await hass.services.async_call(
+        "select",
+        SERVICE_SELECT_OPTION,
+        {ATTR_ENTITY_ID: dry_level, ATTR_OPTION: "bone"},
+        blocking=True,
+    )
+    assert hass.states.get(dry_level).state == "bone"
+
+    aioclient_mock.get(WRITE_URL, text=encrypt('{"response":"SUCCESS"}'))
+    await hass.services.async_call(
+        "button",
+        SERVICE_PRESS,
+        {ATTR_ENTITY_ID: "button.candy_dryer_start_pause"},
+        blocking=True,
+    )
+    writes = [
+        call for call in aioclient_mock.mock_calls if call[1].path == "/http-write.json"
+    ]
+    assert decrypt_response(writes[0][1].query["data"], KEY) == (
+        "Write=1&Pa=0&Sel=0&PrNm=14&StSt=1&DryLev=4&RecipeId=NULL"
+    )
+
+    # A program without dry levels drops the choice.
+    await choose(hass, "whites")
+    assert hass.states.get(dry_level).attributes["options"] == ["default"]
+    assert hass.states.get(dry_level).state == "default"
+
+
 @pytest.mark.parametrize(
     ("state", "command"),
     [("2", "Write=1&SetPauseDryMgr=1"), ("3", "Write=1&SetRestartDryMgr=1")],

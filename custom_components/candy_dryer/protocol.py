@@ -144,20 +144,25 @@ class DryerStatus:
 
 
 def start_command(
-    program: Program, time_level: int | None = None, delay_minutes: int = 0
+    program: Program,
+    time_level: int | None = None,
+    delay_minutes: int = 0,
+    dry_level: int | None = None,
 ) -> str:
     """Start a program, as the Simply-Fi app does for Rapid'O dryers.
 
     time_level is the duration chosen for a timed program: Time switches the
-    dryer from its humidity sensor to a fixed duration. Extra programs add
-    their fixed settings. A delayed start waits delay_minutes.
+    dryer from its humidity sensor to a fixed duration. dry_level is the
+    dryness the humidity sensor aims for. Extra programs add their fixed
+    settings. A delayed start waits delay_minutes.
     """
     query = f"Write=1&Pa=0&Sel=0&PrNm={program.position}&StSt=1"
     level = time_level or program.time_level
     if level:
         query += f"&Time={level}"
-    if program.dry_level:
-        query += f"&DryLev={program.dry_level}"
+    dryness = dry_level or program.dry_level
+    if dryness:
+        query += f"&DryLev={dryness}"
     if delay_minutes:
         query += f"&DelMd=1&DelVl={delay_minutes}"
     return query + "&RecipeId=NULL"

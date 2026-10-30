@@ -33,6 +33,8 @@ class Program:
     position: int
     # Durations that can be chosen ("timed" programs of the app).
     time_levels: tuple[int, ...] = ()
+    # Dry levels that can be chosen, sent as DryLev.
+    dry_levels: tuple[int, ...] = ()
     # Fixed settings of an extra program.
     dry_level: int | None = None
     time_level: int | None = None
@@ -40,7 +42,7 @@ class Program:
 
 STANDARD_PROGRAMS = (
     # Listed first: the most used program.
-    Program("eco_cotton", 14),
+    Program("eco_cotton", 14, dry_levels=(1, 2, 3, 4)),
     Program("daily_perfect_59", 1),
     Program("daily_45", 2),
     Program("eco_30", 3),

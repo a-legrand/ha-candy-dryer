@@ -82,6 +82,12 @@ def test_start_commands_with_duration() -> None:
     )
 
 
+def test_start_commands_with_dry_level() -> None:
+    assert start_command(PROGRAMS_BY_KEY["eco_cotton"], dry_level=4) == (
+        "Write=1&Pa=0&Sel=0&PrNm=14&StSt=1&DryLev=4&RecipeId=NULL"
+    )
+
+
 def test_delayed_start() -> None:
     assert start_command(PROGRAMS_BY_KEY["eco_cotton"], delay_minutes=180) == (
         "Write=1&Pa=0&Sel=0&PrNm=14&StSt=1&DelMd=1&DelVl=180&RecipeId=NULL"
