@@ -41,7 +41,10 @@ their programs differently.
 
 Buttons are available only when the dryer's **remote control is enabled**
 (dial on its remote control position) and the command applies: starting needs
-the door closed and no cycle running. The program to start is ECO Cotton
+the door closed and no cycle running. After a cycle, the dryer ignores remote
+starts (it beeps, and still reports remote control enabled) until its dial is
+turned away from the remote control position and back: one remote start per
+visit. Filter to clean comes on at the end of every cycle. The program to start is ECO Cotton
 until another one is chosen.
 
 Entity and program names are translated in English and French.

@@ -51,7 +51,13 @@ BUTTONS = (
         command_fn=_play_pause,
         allowed_fn=lambda coordinator, status: (
             status.machine_state in ("running", "paused")
-            or (status.door_closed and not status.is_active)
+            or (
+                status.door_closed
+                and not status.is_active
+                # After a cycle the dryer ignores remote starts until its dial
+                # is turned away from the remote position and back.
+                and status.machine_state != "finished"
+            )
         ),
     ),
     CandyDryerButtonDescription(

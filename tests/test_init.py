@@ -204,6 +204,15 @@ async def test_buttons_need_remote_control(
     assert hass.states.get("button.candy_dryer_start_pause").state == STATE_UNAVAILABLE
 
 
+async def test_no_start_after_a_cycle(
+    hass: HomeAssistant, aioclient_mock: AiohttpClientMocker
+) -> None:
+    # Reported at the end of every cycle, with remote control still on.
+    answer(aioclient_mock, StatoTD="8", PrPh="0", CleanFilter="1")
+    await setup_dryer(hass)
+    assert hass.states.get("button.candy_dryer_start_pause").state == STATE_UNAVAILABLE
+
+
 async def test_program_choice_survives_restart(
     hass: HomeAssistant, aioclient_mock: AiohttpClientMocker
 ) -> None:
